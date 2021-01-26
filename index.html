@@ -12,9 +12,9 @@
        <h1 class="text-center">Wellcome To Paioneer Bank</h1>
        <div class="submit-area">
            <h4>login</h4>
-           <input type="text" class="form-control" name="" id="" placeholder="Email">
+           <input type="text" class="form-control"  placeholder="Email">
            <br>
-           <input type="password" class="form-control" name="" id="" placeholder="password">
+           <input type="password" class="form-control"  placeholder="password">
            <br>
            <button id="login" class=" btn btn-success">Enter</button>
        </div>
@@ -24,7 +24,7 @@
            <div class="col-md-4">
               <div class="deposite status">
                 <h4>Deposite</h4>
-                <h2>$00</h2>
+                <h2>$<span id="currentDeposite">00</span></h2>
               </div>
            </div>
            <div class="col-md-4">
@@ -40,8 +40,27 @@
             </div>
         </div>
        </div>
+       <div class="row">
+           <div class="col-md-6">
+              <div class="submit-area">
+                <h4>Deposite</h4>
+                <input id="depositeAmount" type="text" class="form-control" placeholder="$ amount you deposite">
+                <br>
+                <button id="addDeposite" class="btn btn-success">deposite</button>
+              </div>
+           </div>
+           <div class="col-md-6">
+               <div class="submit-area">
+                <h4>Withdraw</h4>
+                <input type="text" class="form-control" placeholder="$ amount you withdraw">
+                <br>
+                <button class="btn btn-success">Withdraw</button>
+               </div>
+           </div>
+       </div>
    </div>
    <script>
+       //login button event handler
        const loginbtn = document.getElementById('login');
        loginbtn.addEventListener('click',function(){
            const logInArea = document.getElementById('login-area');
@@ -50,6 +69,19 @@
            transectionArea.style.display='block'
 
        })
+       //deposite button event handler
+       const addDepositeBtn = document.getElementById('addDeposite');
+       addDepositeBtn.addEventListener('click',function(){
+           const depositeAmount = document.getElementById('depositeAmount').value;
+           const DepositeNumber = parseFloat(depositeAmount);
+
+           const currentDeposite = document.getElementById('currentDeposite').innerText;
+           const currentDepositeNumber = parseFloat(currentDeposite);
+           const totalDeposite = DepositeNumber+currentDepositeNumber;
+           
+           document.getElementById('currentDeposite').innerText = totalDeposite; 
+           document.getElementById('depositeAmount').value = ''; 
+        })
 
    </script> 
 </body>
